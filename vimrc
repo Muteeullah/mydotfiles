@@ -16,6 +16,7 @@ set hidden
 set history=100
 filetype indent on
 set nowrap
+set incsearch
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -34,3 +35,8 @@ map <right> :echoerr "Stop being stupid and use l"<CR>
 nnoremap tn : tabnew<Space>
 nnoremap tl : tabnext<CR>
 nnoremap th : tabprev<CR>
+
+" Set this. Airline will handle the rest (From ALE).
+let g:airline#extensions#ale#enabled = 1
+
+
