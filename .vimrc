@@ -3,8 +3,7 @@
 "vim-bufferline, vim-fugitive, vim-gitgutter, vim-sensible, vim-surround,
 "vim-easy-align, comfortable-motion, 
 
-let g:comfortable_motion_scroll_down_key = "j"
-let g:comfortable_motion_scroll_up_key = "k"
+
 set nocompatible 
 execute pathogen#infect()
 set number
@@ -13,7 +12,7 @@ filetype plugin indent on
 let g:airline_powerline_fonts = 1
 let g:airline_theme='papercolor'
 set hidden
-set history=100
+set history=10000
 filetype indent on
 set nowrap
 set incsearch
@@ -36,7 +35,24 @@ nnoremap tn : tabnew<Space>
 nnoremap tl : tabnext<CR>
 nnoremap th : tabprev<CR>
 
-" Set this. Airline will handle the rest (From ALE).
-let g:airline#extensions#ale#enabled = 1
+"Syntastic Settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
+"let g:ale_completion_enabled = 1
+
+"Uncomment autocmd line to show DOCS and comment completeopt line.
+set completeopt-=preview
+"autocmd CompleteDone * pclose
+
+"Tab mapping for emmet
+"imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+let g:user_emmet_expandabbr_key='<Tab>'
