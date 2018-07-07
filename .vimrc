@@ -9,8 +9,6 @@ execute pathogen#infect()
 set number
 syntax on
 filetype plugin indent on
-let g:airline_powerline_fonts = 1
-let g:airline_theme='papercolor'
 set hidden
 set history=10000
 filetype indent on
@@ -23,12 +21,83 @@ set smartindent
 set autoindent
 set hlsearch
 set showmatch
-let g:airline#extensions#tabline#enabled = 1
 map <leader>\ :NERDTreeToggle<CR>
 map <up> :echoerr "Stop being stupid and use k"<CR>
 map <down> :echoerr "Stop being stupid and use j"<CR>
 map <left> :echoerr "Stop being stupid and use h"<CR>
 map <right> :echoerr "Stop being stupid and use l"<CR>
+
+"Lightline nord settings
+"+--- itchyny/lightline.vim ---+
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ 'active': {
+      \   'left': [
+      \     [ 'mode', 'paste' ],
+      \     [ 'fugitive', 'filename' ]
+      \   ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightlineFugitive',
+      \   'readonly': 'LightlineReadonly',
+      \   'modified': 'LightlineModified',
+      \   'filename': 'LightlineFilename'
+      \ },
+      \ 'separator': {
+      \   'left': '',
+      \   'right': ''
+      \ },
+      \ 'subseparator': {
+      \   'left': '',
+      \   'right': ''
+      \ }
+    \ }
+function! LightlineModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! LightlineReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! LightlineFugitive()
+  if exists("*fugitive#head")
+    let branch = fugitive#head()
+    return branch !=# '' ? ' '.branch : ''
+  endif
+  return ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+       \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+
+"Nord Theme Settings
+let g:nord_italic = 1 
+let g:nord_underline = 1
+let g:nord_italic_comments = 1
+let g:nord_uniform_status_lines = 1
+let g:nord_comment_brightness = 15
+let g:nord_uniform_diff_background = 1
+let g:nord_cursor_line_number_background = 1
+colorscheme nord
 
 "TABS MAPPING
 nnoremap tn : tabnew<Space>
@@ -56,3 +125,4 @@ set completeopt-=preview
 "Tab mapping for emmet
 "imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 let g:user_emmet_expandabbr_key='<Tab>'
+

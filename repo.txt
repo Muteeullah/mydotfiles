@@ -1,15 +1,9 @@
 YouCompleteMe
-dash.vim
 emmet-vim
-javascript-libraries-syntax.vim
 nerdtree
-repo.txt
 supertab
 syntastic
 tern_for_vim
-tmuxline.vim
-vim-airline
-vim-airline-themes
 vim-bufferline
 vim-easy-align
 vim-fugitive
