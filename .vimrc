@@ -94,7 +94,7 @@ let g:nord_italic = 1
 let g:nord_underline = 1
 let g:nord_italic_comments = 1
 let g:nord_uniform_status_lines = 1
-let g:nord_comment_brightness = 15
+let g:nord_comment_brightness = 20
 let g:nord_uniform_diff_background = 1
 let g:nord_cursor_line_number_background = 1
 colorscheme nord
@@ -126,3 +126,17 @@ set completeopt-=preview
 "imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 let g:user_emmet_expandabbr_key='<Tab>'
 
+"Flagging unnecessary whitespace
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
